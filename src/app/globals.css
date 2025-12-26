@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --color-med-blue: #2B6CB0;
+  --color-med-gold: #F6AD55;
+  --color-med-bg: #F7FAFC;
+  --color-med-text: #2D3748;
+
+  --font-display: var(--font-poppins);
+  --font-body: var(--font-pt-sans);
+}
+
+/* Custom Utilities for Premium Selection */
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+  
+  .btn-primary {
+    @apply bg-med-blue text-white px-6 py-2 rounded-lg font-medium shadow-md hover:bg-med-blue/90 transition-all hover:scale-105 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-med-blue border border-med-blue/20 px-6 py-2 rounded-lg font-medium shadow-sm hover:bg-gray-50 transition-all;
+  }
+}
+
+body {
+  background-color: var(--color-med-bg);
+  color: var(--color-med-text);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}

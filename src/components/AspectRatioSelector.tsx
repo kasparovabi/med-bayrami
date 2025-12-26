@@ -36,7 +36,7 @@ export default function AspectRatioSelector({ selected, onSelect }: AspectRatioS
               p-2 rounded-lg transition-colors duration-300
               ${selected === r.id ? "bg-blue-500 text-white shadow-md" : "bg-slate-100 text-slate-500 group-hover:bg-white group-hover:text-blue-500"}
             `}>
-                            {React.cloneElement(r.icon as React.ReactElement, { size: 20 })}
+                            {React.cloneElement(r.icon as React.ReactElement, { size: 20 } as any)}
                         </div>
 
                         <div className="text-center">

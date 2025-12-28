@@ -87,8 +87,28 @@ export async function POST(req: NextRequest) {
             .map(r => (r as PromiseFulfilledResult<string>).value);
 
         if (successfulImages.length === 0) {
+            // Log failed generation
+            const { logApiUsage } = await import("@/lib/firebase");
+            await logApiUsage({
+                timestamp: new Date(),
+                scenario: scenario || "unknown",
+                aspectRatio: aspectRatio,
+                imageCount: 0,
+                status: "error",
+                errorMessage: "All generation attempts failed"
+            });
             throw new Error("All generation attempts failed.");
         }
+
+        // Log successful generation
+        const { logApiUsage } = await import("@/lib/firebase");
+        await logApiUsage({
+            timestamp: new Date(),
+            scenario: scenario || "unknown",
+            aspectRatio: aspectRatio,
+            imageCount: successfulImages.length,
+            status: "success"
+        });
 
         return NextResponse.json({
             success: true,
